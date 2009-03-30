@@ -17,15 +17,23 @@ module TreeDiff
     end
 
     def visit node
-      i = 0
-      color = @root.source == node.source ? 'white' : COLORS[node.source.length]
-
-      @nodes << String.new(<<-eonode)
-        "#{node.object_id}" [
-          label = "<f0> (#{node.name})"
-          color = #{color}
-        ];
-      eonode
+      if @root.source == node.source
+        @nodes << String.new(<<-eonode)
+          "#{node.object_id}" [
+            label = "<f0> (#{node.name})"
+          ];
+        eonode
+      else
+        i = 0
+        @nodes << String.new(<<-eonode)
+          "#{node.object_id}" [
+            label = "{<f0> (#{node.name}) | #{node.source.map { |src|
+              "<f#{i}> #{src}"
+            }.join(" | ")}}"
+            color = blue
+          ];
+        eonode
+      end
       node.children.each { |child|
         @edges << String.new(<<-eoedge)
           "#{node.object_id}" -> "#{child.object_id}":f0 [

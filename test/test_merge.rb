@@ -20,6 +20,11 @@ class TestMerge < Test::Unit::TestCase
     @narf = TreeDiff::Unify.new('narf').accept(@narf.root)
   end
 
+  def test_all_equal?
+    merged = @ndoc.merge(@narf).merge(@hdoc)
+    assert merged.all_equal?
+  end
+
   def test_two_way_merge
     merged = @ndoc.merge(@narf)
 

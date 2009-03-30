@@ -31,5 +31,28 @@ module TreeDiff
       dv.accept(self)
       dv
     end
+
+    def all_equal?
+      eql = Class.new {
+        attr_accessor :equal
+
+        def initialize root
+          @root   = root
+          @equal  = true
+        end
+
+        def accept target
+          target.accept(self)
+        end
+
+        def visit node
+          return unless @equal
+          @equal = node.source == @root.source
+          node.children.each { |c| c.accept(self) }
+        end
+      }.new(self)
+      eql.accept(self)
+      eql.equal
+    end
   end
 end
