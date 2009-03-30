@@ -13,6 +13,9 @@ HOE = Hoe.new('tree_diff', TreeDiff::VERSION) do |p|
     ['hpricot'],
     ['narf'],
   ]
+  p.readme_file   = 'README.rdoc'
+  p.history_file  = 'CHANGELOG.rdoc'
+  p.extra_rdoc_files  = FileList['*.rdoc']
 end
 
 namespace :gem do

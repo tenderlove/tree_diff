@@ -1,7 +1,7 @@
 .autotest
-History.txt
+CHANGELOG.rdoc
 Manifest.txt
-README.txt
+README.rdoc
 Rakefile
 bin/tree_diff
 lib/tree_diff.rb
@@ -15,3 +15,4 @@ lib/tree_diff/unify.rb
 test/test_dots.rb
 test/test_merge.rb
 test/test_tree_diff.rb
+tree_diff.gemspec
