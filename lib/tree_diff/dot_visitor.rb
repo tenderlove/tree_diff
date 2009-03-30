@@ -1,6 +1,13 @@
 module TreeDiff
   class DotVisitor
-    def initialize
+    COLORS = {
+      1 => 'blue',
+      2 => 'red',
+      3 => 'green',
+    }
+
+    def initialize root
+      @root  = root
       @nodes = []
       @edges = []
     end
@@ -11,11 +18,12 @@ module TreeDiff
 
     def visit node
       i = 0
+      color = @root.source == node.source ? 'white' : COLORS[node.source.length]
+
       @nodes << String.new(<<-eonode)
         "#{node.object_id}" [
-          label = "{<f0> (#{node.name}) | #{node.source.map { |source|
-            "<f#{i += 1}> #{source}"
-          }.join(' | ')}}"
+          label = "<f0> (#{node.name})"
+          color = #{color}
         ];
       eonode
       node.children.each { |child|
@@ -34,6 +42,7 @@ module TreeDiff
           node [
             fontsize = "16"
             shape = "record"
+            style = filled
           ];
           #{@nodes.join + @edges.join}
         }

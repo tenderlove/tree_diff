@@ -27,7 +27,7 @@ module TreeDiff
     end
 
     def to_dot
-      dv = DotVisitor.new
+      dv = DotVisitor.new(self)
       dv.accept(self)
       dv
     end

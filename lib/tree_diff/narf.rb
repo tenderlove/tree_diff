@@ -9,3 +9,11 @@ class REXML::Element
     children.length == 0 && has_text?
   end
 end
+
+class REXML::Comment
+  def text?; true; end
+end
+
+class REXML::Text
+  def text?; true; end
+end
