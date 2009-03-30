@@ -1,3 +1,35 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env ruby -w
 
-abort "you need to write me"
+require 'rubygems'
+require 'tree_diff'
+
+if ARGV[0] =~ /--list/
+  Dir[File.join(ARGV[1], '**', '*.html')].sort_by { |file|
+    File.stat(file).size
+  }.each do |file|
+    html = File.read(file)
+    begin
+      ndoc = TreeDiff::Unify.new('nokogiri').accept(Nokogiri::HTML(html).root)
+      hdoc = TreeDiff::Unify.new('hpricot').accept(
+        Hpricot(html, :xhtml_struct => true).root
+      )
+      next if ndoc.merge(hdoc).all_equal?
+      puts "#{file} Differs"
+    rescue
+    end
+  end
+elsif ARGV[0] =~ /--graph/
+  html = File.read(ARGV[1])
+  ndoc = TreeDiff::Unify.new('nokogiri').accept(Nokogiri::HTML(html).root)
+  hdoc = TreeDiff::Unify.new('hpricot').accept(
+    Hpricot(html, :xhtml_struct => true).root
+  )
+  puts ndoc.merge(hdoc).to_dot
+else
+  html = File.read(ARGV[0])
+  ndoc = TreeDiff::Unify.new('nokogiri').accept(Nokogiri::HTML(html).root)
+  hdoc = TreeDiff::Unify.new('hpricot').accept(
+    Hpricot(html, :xhtml_struct => true).root
+  )
+  puts(ndoc.merge(hdoc).all_equal? ? 'Same' : 'Different')
+end
