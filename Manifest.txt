@@ -1,0 +1,7 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/tree_diff
+lib/tree_diff.rb
+test/test_tree_diff.rb
