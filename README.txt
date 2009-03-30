@@ -1,32 +1,31 @@
 = tree_diff
 
-* FIX (url)
+* http://github.com/tenderlove/tree_diff
 
 == DESCRIPTION:
 
-FIX (describe your package)
-
-== FEATURES/PROBLEMS:
-
-* FIX (list of features or problems)
+Parse HTML using different parsers, then show the differences between
+the generated trees.
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+  $ tree_diff --graph /path/to/file.html
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* hpricot
+* nokogiri
+* narf
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo gem install tenderlove-tree_diff
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2009 FIX
+Copyright (c) 2009 Aaron Patterson
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

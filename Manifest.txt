@@ -1,7 +1,17 @@
+.autotest
 History.txt
 Manifest.txt
 README.txt
 Rakefile
 bin/tree_diff
 lib/tree_diff.rb
+lib/tree_diff/dot_visitor.rb
+lib/tree_diff/hpricot.rb
+lib/tree_diff/narf.rb
+lib/tree_diff/node.rb
+lib/tree_diff/nokogiri.rb
+lib/tree_diff/rexml.rb
+lib/tree_diff/unify.rb
+test/test_dots.rb
+test/test_merge.rb
 test/test_tree_diff.rb
