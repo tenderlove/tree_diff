@@ -21,14 +21,17 @@ class TestTreeDiff < Test::Unit::TestCase
   end
 
   def test_unify_nokogiri
-    assert TreeDiff::Unify.new('nokogiri').accept(@ndoc.root)
+    assert_instance_of TreeDiff::Node,
+      TreeDiff::Unify.new('nokogiri').accept(@ndoc.root)
   end
 
   def test_unify_hpricot
-    assert TreeDiff::Unify.new('hpricot').accept(@hdoc.root)
+    assert_instance_of TreeDiff::Node,
+      TreeDiff::Unify.new('hpricot').accept(@hdoc.root)
   end
 
   def test_unify_narf
-    assert TreeDiff::Unify.new('narf').accept(@narf.root)
+    assert_instance_of TreeDiff::Node,
+      TreeDiff::Unify.new('narf').accept(@narf.root)
   end
 end

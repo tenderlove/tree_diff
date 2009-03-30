@@ -21,5 +21,9 @@ module TreeDiff
   
       Node.new(name, edge, diff + merged, source + other.source)
     end
+
+    def accept visitor
+      visitor.visit(self)
+    end
   end
 end
