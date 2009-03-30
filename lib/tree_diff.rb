@@ -1,3 +1,4 @@
+require 'tree_diff/dot_visitor'
 require 'tree_diff/nokogiri'
 require 'tree_diff/hpricot'
 require 'tree_diff/narf'
