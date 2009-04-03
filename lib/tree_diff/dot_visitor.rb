@@ -1,9 +1,9 @@
 module TreeDiff
   class DotVisitor
     COLORS = {
-      1 => 'blue',
-      2 => 'red',
-      3 => 'green',
+      'nokogiri' => 'blue',
+      'hpricot'  => 'red',
+      'narf'     => 'green',
     }
 
     def initialize root
@@ -30,7 +30,7 @@ module TreeDiff
             label = "{<f0> (#{node.name}) | #{node.source.map { |src|
               "<f#{i}> #{src}"
             }.join(" | ")}}"
-            color = blue
+            color = #{COLORS[node.source.first]}
           ];
         eonode
       end
